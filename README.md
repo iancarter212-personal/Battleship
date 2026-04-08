@@ -5,7 +5,7 @@ Live link: https://battleship-game-fvnrvjkm.devinapps.com/
 Tech Stack: Built with vanilla HTML, CSS, and JavaScript — no frameworks or dependencies. Spec sheet is attached separately here.
 
 Description:
-A fully functional, browser-based Battleship game where you compete against a smart AI opponent. Built as a single HTML file with no external dependencies — just open it in any modern browser and play. The game features ship placement with drag-and-rotate controls, a hunt/target AI strategy with checkerboard scanning, hit/miss/sunk animations, mobile-responsive layout, and full game statistics tracking.
+A fully functional, browser-based Battleship game where Devin competes against a smart AI opponent ("the competition"). Built as a single HTML file with no external dependencies — just open it in any modern browser and play. The game features ship placement with drag-and-rotate controls, a hunt/target AI strategy with checkerboard scanning, hit/miss/sunk animations, mobile-responsive layout, and full game statistics tracking.
 
 
 

@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Battleship</title>
+<title>Battleship: Cognition vs the Competition</title>
 <style>
 /* === RESET & BASE === */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; }
 body {
-  font-family: system-ui, -apple-system, 'Segoe UI', Arial, Helvetica, sans-serif;
+  font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Arial, Helvetica, sans-serif;
   background: #0a1628;
   color: #e2e8f0;
   min-height: 100vh;
@@ -26,9 +26,9 @@ body {
   width: 100%;
 }
 .header h1 {
-  font-size: 2.4rem;
+  font-size: 1.9rem;
   font-weight: 800;
-  letter-spacing: 6px;
+  letter-spacing: 4px;
   color: #e2e8f0;
   text-shadow: 0 2px 12px rgba(26,111,168,0.5);
 }
@@ -377,8 +377,8 @@ body {
 
 <!-- HEADER -->
 <div class="header">
-  <h1>BATTLESHIP</h1>
-  <div class="subtitle">Sink the enemy fleet before yours goes down.</div>
+  <h1>BATTLESHIP: Cognition vs the Competition</h1>
+  <div class="subtitle">Sink the coding agent before they can beat Devin.</div>
 </div>
 
 <!-- STATUS BAR -->
@@ -391,7 +391,7 @@ body {
 <div class="game-container" id="gameContainer">
   <!-- Player Board -->
   <div class="board-section" id="playerSection">
-    <div class="board-label">YOUR FLEET</div>
+    <div class="board-label">DEVIN FLEET</div>
     <div class="grid-wrapper">
       <div class="grid" id="playerGrid"></div>
     </div>
@@ -402,14 +402,14 @@ body {
       <div class="btn-group">
         <button class="btn btn-secondary" id="btnRotate" title="Press R to rotate">Rotate (H)</button>
         <button class="btn btn-secondary" id="btnRandom">Random Placement</button>
-        <button class="btn btn-primary" id="btnStart" disabled>Start Battle</button>
+        <button class="btn btn-primary" id="btnStart" disabled>Start Game</button>
       </div>
     </div>
   </div>
 
   <!-- Enemy Board -->
   <div class="board-section" id="enemySection">
-    <div class="board-label">ENEMY WATERS</div>
+    <div class="board-label">ENEMY CODING AGENT FLEET</div>
     <div class="grid-wrapper">
       <div class="grid enemy-grid" id="enemyGrid"></div>
     </div>
@@ -419,13 +419,13 @@ body {
 <!-- STATS PANEL -->
 <div class="stats-panel" id="statsPanel" style="display:none;">
   <div class="stats-col">
-    <h4>YOUR STATS</h4>
+    <h4>DEVIN'S STATS</h4>
     <div class="stat-line">Shots: <span id="pShots">0</span></div>
     <div class="stat-line">Hits: <span id="pHits">0</span></div>
     <div class="stat-line">Accuracy: <span id="pAcc">0</span>%</div>
   </div>
   <div class="stats-col">
-    <h4>AI STATS</h4>
+    <h4>COMPETITION'S STATS</h4>
     <div class="stat-line">Shots: <span id="aShots">0</span></div>
     <div class="stat-line">Hits: <span id="aHits">0</span></div>
     <div class="stat-line">Accuracy: <span id="aAcc">0</span>%</div>
@@ -785,7 +785,7 @@ function handlePlayerCellLeave() {
 function updatePlacementStatus() {
   if (placedShips.length === SHIPS.length) {
     btnStart.disabled = false;
-    statusBar.textContent = 'All ships placed! Click "Start Battle" to begin.';
+    statusBar.textContent = 'All ships placed! Click "Start Game" to begin.';
   } else {
     btnStart.disabled = true;
     const remaining = SHIPS.length - placedShips.length;
@@ -863,7 +863,7 @@ function startBattle() {
   dockPanel.style.display = 'none';
   statsPanel.style.display = 'flex';
 
-  statusBar.textContent = 'Your turn — click the enemy grid to fire!';
+  statusBar.textContent = 'Your turn \u2014 click the enemy grid to fire!';
   renderPlayerBoard();
   renderEnemyBoard();
   updateStats();
@@ -923,11 +923,11 @@ function handleEnemyCellClick(e) {
 
   // AI turn after delay
   setTimeout(() => {
-    statusBar.textContent = 'AI is thinking...';
+    statusBar.textContent = 'The competition is thinking\u2026';
     setTimeout(() => {
       aiTurn();
-    }, 400 + Math.random() * 300);
-  }, 300);
+    }, 1000);
+  }, 500);
 }
 
 // ============================================================
@@ -1010,8 +1010,8 @@ function aiTurn() {
         playerBoard[sr][sc].sunk = true;
       });
       renderPlayerBoard();
-      showToast('Your ' + ship.name + ' has been sunk!');
-      statusBar.textContent = 'AI sank your ' + ship.name + '!';
+      showToast('They sank Devin\'s ' + ship.name + '!');
+      statusBar.textContent = 'They sank Devin\'s ' + ship.name + '!';
 
       // Check if there are stacked targets from hitting another ship
       if (aiPendingTargets.length > 0) {
@@ -1028,7 +1028,7 @@ function aiTurn() {
         aiCurrentTarget = null;
       }
     } else {
-      statusBar.textContent = 'AI hit your ' + ship.name + '!';
+      statusBar.textContent = 'They hit Devin\'s ' + ship.name + '!';
 
       // Check if this hit is on a different ship than the one being targeted
       if (aiMode === 'target' && aiCurrentTarget !== null && val.shipIndex !== aiCurrentTarget) {
@@ -1087,7 +1087,7 @@ function aiTurn() {
     // MISS
     playerBoard[r][c] = false;
     cell.className = 'cell miss';
-    statusBar.textContent = 'AI missed!';
+    statusBar.textContent = 'The competition missed!';
   }
 
   updateStats();
@@ -1098,7 +1098,7 @@ function aiTurn() {
   isPlayerTurn = true;
   if (phase === 'battle') {
     setTimeout(() => {
-      statusBar.textContent = 'Your turn — click the enemy grid to fire!';
+      statusBar.textContent = 'Your turn \u2014 click the enemy grid to fire!';
     }, 600);
   }
 }
@@ -1115,7 +1115,7 @@ function checkWin(attacker) {
       gameOverFired = true;
       phase = 'ended';
       const acc = playerShotsFired > 0 ? Math.round((playerHitsCount / playerShotsFired) * 100) : 0;
-      endTitle.textContent = '🎉 You Win!';
+      endTitle.textContent = '\ud83c\udf89 Devin Won!';
       endStats.innerHTML = 'Shots fired: ' + playerShotsFired + '<br>Hits: ' + playerHitsCount + '<br>Accuracy: ' + acc + '%';
       showEndScreen();
       return true;
@@ -1125,8 +1125,8 @@ function checkWin(attacker) {
     if (allSunk) {
       gameOverFired = true;
       phase = 'ended';
-      endTitle.textContent = '💀 Game Over';
-      endStats.innerHTML = 'The AI has sunk all your ships!<br>Your shots: ' + playerShotsFired + '<br>Your accuracy: ' + (playerShotsFired > 0 ? Math.round((playerHitsCount / playerShotsFired) * 100) : 0) + '%';
+      endTitle.textContent = '\ud83d\udc80 Game Over, Devin Didn\'t Win This Time';
+      endStats.innerHTML = 'The competition has sunk all of Devin\'s ships!<br>Shots fired: ' + playerShotsFired + '<br>Accuracy: ' + (playerShotsFired > 0 ? Math.round((playerHitsCount / playerShotsFired) * 100) : 0) + '%';
       showEndScreen();
       return true;
     }
