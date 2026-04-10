@@ -1,6 +1,6 @@
-# Battleship: Devin vs the Competiton
+# Battleship: Devin vs the Competiton V1
 
-Live link: https://battleship-game-fvnrvjkm.devinapps.com/
+V1 Live link: https://battleship-game-fvnrvjkm.devinapps.com/
 
 Tech Stack: Built with vanilla HTML, CSS, and JavaScript — no frameworks or dependencies. Spec sheet is attached separately here.
 
